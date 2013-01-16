@@ -1,0 +1,50 @@
+html, body{
+	padding: 0px;
+	margin: 0px;
+	background-color: #eee;
+}
+label{
+	font-weight: bold;
+	font-size: 11px; 
+}
+.wrapper{
+	display: none;
+}
+.container{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+#loader{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+}
+#mineralsFromOre{
+	display: none;
+}
+.emtpyCell {
+	background-color: #eee !important;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+a.toggleLink{
+	padding: 5px;
+	font-size: 16px;
+	font-weight: bold;
+}
+a:hover{
+	text-decoration: underline;
+}
+.high{
+	background-color: #90A1FA !important;
+}
+.low{
+	background-color: #EBFC8B !important;
+}
+.null{
+	background-color: #FC948B !important;
+}
+			
+			

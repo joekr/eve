@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Eve Ore Calculator</title>
+		<link href="tablesorter\themes\blue\style.css" rel="stylesheet" type="text/css">
+		<link href="css\eoc.css" rel="stylesheet" type="text/css">
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="tablesorter\jquery.tablesorter.js"></script> 
+		<script src="js\ore.js"></script>
+		<script src="js\eoc.js"></script>
+	</head>
+	<body>
+		<div id="loader">
+			<img src="images/ajax-loader.gif" />
+		</div>	
+		
+		<div class="wrapper">
+			<a class="toggleLink" href="#">Refining</a>
+			<div class="container">
+				<table id="refining">
+					<tr>
+						<td><label for="refiningLevel">Refining Level: </label></td>
+						<td>
+							<select id="refiningLevel">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5" selected>5</option>
+							</select>
+						</td>	
+					</tr>
+					<tr>
+						<td><label for="refiningEfficiencyLevel">Refining Efficiency Level: </label></td>
+						<td>
+							<select id="refiningEfficiencyLevel">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4" selected>4</option>
+								<option value="5">5</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="oreProcessing">Ore Processing Level: </label></td>
+						<td>
+							<select id="oreProcessing">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3" selected>3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="stationEfficiency">Station Efficiency: </label></td>
+						<td><input id="stationEfficiency" size="3" value=".5"/></td>
+					</tr>
+					<tr>
+						<td><label for="stationTax">Station Tax: </label></td>
+						<td><input id="stationTax" size="3" value="5"/></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr id="efficiency">
+						<td><label>Refining Efficiency: </label></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				
+				<label for="refineOre">Refine: </label>
+				<span id="refineOre"></span>
+
+				<label for="refineQuantity">Quantity: </label>
+				<input id="refineQuantity"></input>
+				
+				<table id="mineralsFromOre" class="tablesorter">
+					<thead>
+						<tr>
+							<th>Minerals</th>
+							<th>Batch</th>
+							<th>Number of Batches</th>
+							<th>Left Over</th>
+							<th>Amount (per batch)</th>
+							<th>Quantity</th>
+							<th>Price</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody id="refinesTo">
+					</tbody>
+				 </table>
+			</div>
+			
+			<br/>
+			
+			<a class="toggleLink" href="#">Minerals</a>
+			<div class="container">
+				<table id="minerals" class="tablesorter">
+					<thead>
+						<th>Mineral</th>
+						<th>Price</th>
+						<th>Input</th>
+						<th>Value</th>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			
+			<br/>
+			
+			<a class="toggleLink" href="#">Ore</a>
+			<div class="container">
+				<table id="ore"  class="tablesorter">
+					<thead>
+						<th>Ore</th>
+						<th>Volume</th>
+						<th>Price</th>
+						<th>Price/Volume</th>
+						<th>Input</th>
+						<th>Value</th>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>	
