@@ -158,6 +158,8 @@ var _EOC = (function(window, document, undefined){
 						var ore = oreData[$("span#refineOre > select")[0].selectedIndex-1].details,
 								mineral,
 								oreAmount = ($.trim($("#refineQuantity").val()) === "" ? 0 : $("#refineQuantity").val()),
+								efficiency = $("#efficiency > td:eq(1)").text().replace("%", ""),
+								stationTax = $("#stationTax").val(),
 								quantity = 0,
 								total = 0,
 								text = "",
@@ -176,6 +178,9 @@ var _EOC = (function(window, document, undefined){
 							remainder = oreAmount%ore.batch;
 							quantity = batches * val;
 							total = parseFloat(total) + parseFloat(mineral.price*quantity);
+							efficiency = (efficiency/100)*quantity - quantity;
+							stationTax = (1 + stationTax/100)*quantity - quantity;
+							quantity = quantity - stationTax - efficiency;
 							
 							text += "<tr><td>" + key 
 									+ "</td><td>" + ore.batch 
@@ -183,18 +188,20 @@ var _EOC = (function(window, document, undefined){
 									+ "</td><td>" + remainder 
 									+ "</td><td>" + val
 									+ "</td><td>" + quantity
+									+ "</td><td>" + efficiency
+									+ "</td><td>" + stationTax
 									+ "</td><td>" + mineral.price
 									+ "</td><td>" + (mineral.price*quantity).toFixed(2);
 									+ "</td></tr>";
 						});
 						
 						text += "<tr>"
-								+ "<td colspan='7' class='emtpyCell' align='right'><b>Total ISK From Refining Ore:</b>"  
+								+ "<td colspan='9' class='emtpyCell' align='right'><b>Total ISK From Refining Ore:</b>"  
 								+ "</td><td>" + formatMoney(total, "2", ".", ",")
 								+ "</td></tr>"
-								+ "<tr><td colspan='7' class='emtpyCell' align='right'><b>Total ISK From Selling Ore:</b>"  
+								+ "<tr><td colspan='9' class='emtpyCell' align='right'><b>Total ISK From Selling Ore:</b>"  
 								+ "</td><td>" + formatMoney((ore.price*quantity), "2", ".", ",")
-								+ "<tr><td colspan='7' class='emtpyCell' align='right'><b>Difference:</b>"  
+								+ "<tr><td colspan='9' class='emtpyCell' align='right'><b>Difference:</b>"  
 								+ "</td><td>" + formatMoney((total - (ore.price*quantity)), "2", ".", ",")
 								+ "</td></tr>";
 						
