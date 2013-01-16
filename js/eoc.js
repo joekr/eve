@@ -50,8 +50,8 @@ var _EOC = (function(window, document, undefined){
 		$.ajax({
 			  url: "http://api.eve-central.com/api/marketstat",
 			  data: {
-				typeid: ore.details.typeId,
-				regionlimit: 10000032
+				typeid: ore.details.typeId//,
+				//regionlimit: 10000032
 			  },
 			  success: function(data){
 				ore.details.price = $(data).find("sell").children("median").text();
@@ -123,9 +123,9 @@ var _EOC = (function(window, document, undefined){
 				for(var k=0; k<oreData.length; k++){			
 					$("table#ore tbody").append("<tr name='"+ oreData[k].details.name +"'>"
 										+ "<td class='" + oreData[k].details.security + "' name='name'><a href='http://wiki.eveonline.com/en/wiki/" + oreData[k].details.name + "'>" + oreData[k].details.name +"</td>"
-										+ "<td name='volume'>"+ oreData[k].details.volume +"m<sup>3</sup></td>"
+										+ "<td name='volume'>"+ oreData[k].details.volume + "</td>"
 										+ "<td name='price'>"+ formatMoney(oreData[k].details.price, "2", ".", ",") +"</td>"
-										+ "<td name='pricePerVolume'>"+ formatMoney((oreData[k].details.price/oreData[k].details.volume), "2", ".", ",") +"</td>"
+										+ "<td name='pricePerVolume'>"+ (oreData[k].details.price/oreData[k].details.volume).toFixed(2) +"</td>"
 										+ "<td><input data-price='" + oreData[k].details.price + "' value='0.00'></input></td>"
 										+ "<td><span>0.00</span></td></tr>");
 				
@@ -188,14 +188,14 @@ var _EOC = (function(window, document, undefined){
 									+ "</td></tr>";
 						});
 						
-						text += "<tr><td class='emtpyCell'>"  
-								+ "</td><td class='emtpyCell'>"  
-								+ "</td><td class='emtpyCell'>"  
-								+ "</td><td class='emtpyCell'>"  
-								+ "</td><td class='emtpyCell'>"  
-								+ "</td><td class='emtpyCell'>"  
-								+ "</td><td class='emtpyCell'>"  
-								+ "</td><td>" + formatMoney(total, "2", ".", ",");
+						text += "<tr>"
+								+ "<td colspan='7' class='emtpyCell' align='right'><b>Total ISK From Refining Ore:</b>"  
+								+ "</td><td>" + formatMoney(total, "2", ".", ",")
+								+ "</td></tr>"
+								+ "<tr><td colspan='7' class='emtpyCell' align='right'><b>Total ISK From Selling Ore:</b>"  
+								+ "</td><td>" + formatMoney((ore.price*quantity), "2", ".", ",")
+								+ "<tr><td colspan='7' class='emtpyCell' align='right'><b>Difference:</b>"  
+								+ "</td><td>" + formatMoney((total - (ore.price*quantity)), "2", ".", ",")
 								+ "</td></tr>";
 						
 						$("#refinesTo").html(text);
